@@ -12,7 +12,7 @@ app.use(
   morgan(':method :status :res[content-length] - :response-time ms :person')
 );
 
-morgan.token('person', (req, res) => JSON.stringify(req.body));
+morgan.token('person', (req) => JSON.stringify(req.body));
 
 const errorHandler = (error, request, response, next) => {
   console.error(error.message);
@@ -76,7 +76,7 @@ app.post('/api/persons', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
-    .then((result) => res.status(204).end())
+    .then(() => res.status(204).end())
     .catch((error) => next(error));
 });
 

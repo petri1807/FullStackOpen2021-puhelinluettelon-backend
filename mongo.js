@@ -46,7 +46,7 @@ if (process.argv.length === 5) {
     number: number,
   });
 
-  person.save().then((res) => {
+  person.save().then(() => {
     console.log('person saved');
     mongoose.connection.close();
   });
